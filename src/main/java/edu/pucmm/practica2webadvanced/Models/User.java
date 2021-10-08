@@ -1,6 +1,5 @@
 package edu.pucmm.practica2webadvanced.Models;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,7 +22,7 @@ public class User implements Serializable {
     private Set<Rol> roles;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<HTTPResponse> misMocks;
+    private Set<Mock> misMocks;
 
     public User(String username, String password, Set<Rol> roles) {
         this.username = username;

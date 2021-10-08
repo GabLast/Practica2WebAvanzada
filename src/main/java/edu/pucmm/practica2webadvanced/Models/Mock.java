@@ -9,20 +9,19 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-public class HTTPResponse implements Serializable {
+public class Mock implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idResponse;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL) @Column(nullable = false)
     private HTTPStatusCode statusCode;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL) @Column(nullable = false)
     private Charset charset;
-    @OneToOne(cascade = CascadeType.ALL)
-    private ResponseContentType responseContentType;
-
-    @Column(nullable = false, columnDefinition = "get")
-    private String accessMethod;
+    @OneToOne(cascade = CascadeType.ALL) @Column(nullable = false)
+    private ContentType contentType;
+    @OneToOne(cascade = CascadeType.ALL) @Column(nullable = false)
+    private AccessMethod accessMethod;
 
     @Column(nullable = false)
     private String httpHeaders;
@@ -30,13 +29,16 @@ public class HTTPResponse implements Serializable {
     @Column(nullable = false)
     private String responseBody;
 
-    public HTTPResponse() {
+    @Column(nullable = false)
+    private boolean deleted = false;
+
+    public Mock() {
     }
 
-    public HTTPResponse(HTTPStatusCode statusCode, Charset charset, ResponseContentType responseContentType, String accessMethod, String httpHeaders, String responseBody) {
+    public Mock(HTTPStatusCode statusCode, Charset charset, ContentType contentType, AccessMethod accessMethod, String httpHeaders, String responseBody) {
         this.statusCode = statusCode;
         this.charset = charset;
-        this.responseContentType = responseContentType;
+        this.contentType = contentType;
         this.accessMethod = accessMethod;
         this.httpHeaders = httpHeaders;
         this.responseBody = responseBody;

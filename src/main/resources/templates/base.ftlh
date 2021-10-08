@@ -42,7 +42,7 @@
 </style>
 <#--body here-->
 
-<#include "adminNavBar.ftlh">
+<#include "navBar.ftlh">
 
 <br><br><br>
 <@page_body/>
