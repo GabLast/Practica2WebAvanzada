@@ -18,7 +18,7 @@ public class User implements Serializable {
     @Column(nullable = false)
     private boolean active = true;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Column(nullable = false)
     private Set<Rol> roles;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

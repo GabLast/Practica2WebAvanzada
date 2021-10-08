@@ -35,8 +35,10 @@ public class Config extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 /*.loginPage()*/;
 
-        // Needed for POST requests without csrf in forms
+        //TODO: validar exclusivamente en ambiente de prueba.
+        // deshabilitando las seguridad contra los frame internos.
         http.csrf().disable();
         http.headers().frameOptions().disable();
+
     }
 }

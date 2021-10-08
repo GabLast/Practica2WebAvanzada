@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class RolServices {
 
@@ -16,6 +18,14 @@ public class RolServices {
 
         repository.save(r);
         return r;
+    }
+
+    public List<Rol> findall(){
+        return repository.findAll();
+    }
+
+    public  List<Rol> findByID(Rol a){
+        return repository.findById(a);
     }
 
 }

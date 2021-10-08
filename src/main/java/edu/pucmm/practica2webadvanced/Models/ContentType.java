@@ -12,8 +12,6 @@ import java.io.Serializable;
 public class ContentType implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idContentType;
     @Column(nullable = false)
     private String description;
 

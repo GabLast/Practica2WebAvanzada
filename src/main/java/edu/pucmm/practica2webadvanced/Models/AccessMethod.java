@@ -12,4 +12,11 @@ import javax.persistence.Id;
 public class AccessMethod {
     @Id
     private String method;
+
+    public AccessMethod() {
+    }
+
+    public AccessMethod(String method) {
+        this.method = method;
+    }
 }
