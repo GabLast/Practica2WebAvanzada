@@ -11,16 +11,13 @@ import java.io.Serializable;
 @Setter
 public class Charset implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
     @Column(nullable = false)
     private String description;
 
     public Charset() {
     }
 
-    public Charset(int id, String description) {
-        this.id = id;
+    public Charset(String description) {
         this.description = description;
     }
 }

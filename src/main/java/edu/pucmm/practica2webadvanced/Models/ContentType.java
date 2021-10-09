@@ -9,18 +9,16 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-public class ResponseContentType implements Serializable {
+public class ContentType implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idContentType;
     @Column(nullable = false)
     private String description;
 
-    public ResponseContentType() {
+    public ContentType() {
     }
 
-    public ResponseContentType(String description) {
+    public ContentType(String description) {
         this.description = description;
     }
 }
