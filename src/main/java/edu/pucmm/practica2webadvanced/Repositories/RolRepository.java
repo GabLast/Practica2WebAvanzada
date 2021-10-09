@@ -5,9 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface RoleRepository extends JpaRepository<Rol, String> {
+public interface RolRepository extends JpaRepository<Rol, String> {
 
     List<Rol> findAll();
 
-    List<Rol> findById(Rol a);
+    List<Rol> findByRole(String rol);
 }

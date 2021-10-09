@@ -1,10 +1,8 @@
 package edu.pucmm.practica2webadvanced.Services;
 import edu.pucmm.practica2webadvanced.Models.Rol;
-import edu.pucmm.practica2webadvanced.Repositories.RoleRepository;
+import edu.pucmm.practica2webadvanced.Repositories.RolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,20 +10,20 @@ import java.util.List;
 public class RolServices {
 
     @Autowired
-    private RoleRepository repository;
+    private RolRepository rolRepository;
 
     public Rol insert(Rol r){
 
-        repository.save(r);
+        rolRepository.save(r);
         return r;
     }
 
     public List<Rol> findall(){
-        return repository.findAll();
+        return rolRepository.findAll();
     }
 
-    public  List<Rol> findByID(Rol a){
-        return repository.findById(a);
+    public  List<Rol> findByID(String a){
+        return rolRepository.findByRole(a);
     }
 
 }

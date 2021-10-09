@@ -14,13 +14,13 @@ public class Mock implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idResponse;
 
-    @OneToOne(cascade = CascadeType.ALL) @Column(nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
     private HTTPStatusCode statusCode;
-    @OneToOne(cascade = CascadeType.ALL) @Column(nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
     private Charset charset;
-    @OneToOne(cascade = CascadeType.ALL) @Column(nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
     private ContentType contentType;
-    @OneToOne(cascade = CascadeType.ALL) @Column(nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
     private AccessMethod accessMethod;
 
     @Column(nullable = false)

@@ -6,6 +6,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -27,23 +29,23 @@ public class DBData {
 
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-    @PostConstruct
     public void initDB()
     {
         //roles
-        rolServices.insert(new Rol("ROLE_ADMIN"));
-        rolServices.insert(new Rol("ROLE_USER"));
-        List<Rol> roles = rolServices.findall();
+        Rol admin = new Rol("ROLE_ADMIN");
+        Rol user = new Rol("ROLE_USER");
+        rolServices.insert(admin);
+        rolServices.insert(user);
 
         //users
         User user1 = new User();
         User user2 = new User();
         user1.setUsername("admin");
-        user1.setPassword("admin");
-        user1.setRoles((Set<Rol>) roles);
+        user1.setPassword(bCryptPasswordEncoder.encode("admin"));
+        user1.setRoles(new HashSet<>(Arrays.asList(admin, user)));
         user2.setUsername("gab");
-        user2.setPassword("123");
-        user2.setRoles((Set<Rol>) roles.stream().filter(a -> a.getRole() == "ROLE_USER").findFirst().orElse(null));
+        user2.setPassword(bCryptPasswordEncoder.encode("123"));
+        user2.setRoles(new HashSet<>(Arrays.asList(user)));
         userServices.insert(user1);
         userServices.insert(user2);
 
@@ -115,6 +117,8 @@ public class DBData {
         contentTypeServices.insert(new ContentType("text/json"));
         contentTypeServices.insert(new ContentType("text/plain"));
         contentTypeServices.insert(new ContentType("text/xml"));
+
+        System.out.println("Initial Data has been loaded");
 
     }
 }
