@@ -8,4 +8,5 @@ import java.util.List;
 public interface AccessMethodRepository extends JpaRepository<AccessMethod, String> {
 
     List<AccessMethod> findAll();
+    AccessMethod findByMethod(String a);
 }

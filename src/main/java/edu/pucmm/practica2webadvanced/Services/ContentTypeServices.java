@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class ContentTypeServices {
 
@@ -16,5 +18,13 @@ public class ContentTypeServices {
     public ContentType insert(ContentType c){
         contentTypeRepository.save(c);
         return c;
+    }
+
+    public ContentType findByDescription(String d){
+        return contentTypeRepository.findByDescription(d);
+    }
+
+    public List<ContentType> findAll(){
+        return contentTypeRepository.findAll();
     }
 }

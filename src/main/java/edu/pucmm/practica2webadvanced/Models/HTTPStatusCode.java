@@ -25,4 +25,12 @@ public class HTTPStatusCode implements Serializable {
     public HTTPStatusCode() {
 
     }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

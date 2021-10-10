@@ -20,4 +20,8 @@ public class Charset implements Serializable {
     public Charset(String description) {
         this.description = description;
     }
+
+    public String getDescription() {
+        return description;
+    }
 }

@@ -19,4 +19,8 @@ public class AccessMethod {
     public AccessMethod(String method) {
         this.method = method;
     }
+
+    public String getMethod() {
+        return method;
+    }
 }

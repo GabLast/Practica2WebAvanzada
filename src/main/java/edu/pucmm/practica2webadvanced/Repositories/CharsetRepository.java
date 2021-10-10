@@ -8,4 +8,6 @@ import java.util.List;
 public interface CharsetRepository extends JpaRepository<Charset, String> {
 
     List<Charset> findAll();
+
+    Charset findByDescription(String d);
 }
