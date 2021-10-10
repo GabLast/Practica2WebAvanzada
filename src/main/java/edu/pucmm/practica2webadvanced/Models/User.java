@@ -21,12 +21,10 @@ public class User implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Column(nullable = false)
     private Set<Rol> roles;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Mock> misMocks;
 
     public User(String username, String password, Set<Rol> roles) {
         this.username = username;
-        this.password = password;//new BCryptPasswordEncoder.encode(password);
+        this.password = password;
         this.roles = roles;
     }
 
@@ -66,11 +64,4 @@ public class User implements Serializable {
         this.roles = roles;
     }
 
-    public Set<Mock> getMisMocks() {
-        return misMocks;
-    }
-
-    public void setMisMocks(Set<Mock> misMocks) {
-        this.misMocks = misMocks;
-    }
 }

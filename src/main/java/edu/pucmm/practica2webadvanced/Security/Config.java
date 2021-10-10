@@ -33,7 +33,8 @@ public class Config extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                /*.loginPage()*/;
+                .loginPage("/user/auth") //indicando la ruta que estaremos utilizando.
+                .failureUrl("/user/auth?error"); //en caso de fallar puedo indicar otra pagina.;
 
         //TODO: validar exclusivamente en ambiente de prueba.
         // deshabilitando las seguridad contra los frame internos.
