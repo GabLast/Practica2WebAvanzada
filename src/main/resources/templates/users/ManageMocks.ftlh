@@ -49,6 +49,17 @@
                                                 <td>
                                                     <div class="row">
                                                         <div class="col">
+                                                            <form method="get" action="/view"
+                                                                  enctype="application/x-www-form-urlencoded">
+                                                                <input type="number" name="idResponse"
+                                                                       value="${es.getIdResponse()}" hidden required/>
+                                                                <button class="btn btn-sm btn-custom1"
+                                                                        type="submit">
+                                                                    <span class="material-icons">visibility</span>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        <div class="col">
                                                             <form method="get" action="/edit"
                                                                   enctype="application/x-www-form-urlencoded">
                                                                 <input type="number" name="idResponse"

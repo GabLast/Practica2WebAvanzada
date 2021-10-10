@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class HTTPStatusCodeServices {
 
@@ -17,5 +19,15 @@ public class HTTPStatusCodeServices {
     {
         httpStatusCodeRepository.save(h);
         return h;
+    }
+
+    public HTTPStatusCode findByCode(int h)
+    {
+
+        return httpStatusCodeRepository.findByCode(h);
+    }
+
+    public List<HTTPStatusCode> findAll(){
+        return httpStatusCodeRepository.findAll();
     }
 }

@@ -22,6 +22,10 @@ public class MockServices {
     }
 
     public List<Mock> findAllNotDeletedByUser(User user){
-        return mockRepository.findAllByUserAndDeletedNot(user);
+        return mockRepository.findAllByUserAndDeleted(user, false);
+    }
+
+    public List<Mock> findAllNotDeleted(){
+        return mockRepository.findAllByDeleted(false);
     }
 }

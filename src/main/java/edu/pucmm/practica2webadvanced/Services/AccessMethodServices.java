@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class AccessMethodServices {
 
@@ -17,6 +19,14 @@ public class AccessMethodServices {
     public AccessMethod insert(AccessMethod accessMethod){
         accessMethodRepository.save(accessMethod);
         return accessMethod;
+    }
+
+    public AccessMethod findByMethod(String a){
+        return accessMethodRepository.findByMethod(a);
+    }
+
+    public List<AccessMethod> findAll(){
+        return accessMethodRepository.findAll();
     }
 
 }

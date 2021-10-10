@@ -38,6 +38,8 @@ public class Mock implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date expirationDate;
 
+    private String token;
+
     @Column(nullable = false)
     private boolean deleted = false;
 

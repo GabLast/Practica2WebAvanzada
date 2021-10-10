@@ -8,9 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface MockRepository extends JpaRepository<Mock, Long> {
-    List<Mock> findAllByDeletedNot(boolean deleted);
+    List<Mock> findAllByDeleted(boolean deleted);
 
-    List<Mock> findAllByDeletedNot();
-
-    List<Mock> findAllByUserAndDeletedNot(User user);
+    List<Mock> findAllByUserAndDeleted(User user, boolean deleted);
 }

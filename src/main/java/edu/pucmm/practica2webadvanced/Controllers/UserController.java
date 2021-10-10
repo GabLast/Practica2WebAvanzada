@@ -26,10 +26,12 @@ public class UserController {
 
         model.addAttribute("title", messageSource.getMessage("title", null, locale));
         model.addAttribute("inicio", messageSource.getMessage("inicio", null, locale));
-        model.addAttribute("manejar-mocks", messageSource.getMessage("manejar-mocks", null, locale));
+        model.addAttribute("manejarmocks", messageSource.getMessage("manejarmocks", null, locale));
         model.addAttribute("viewMocks", messageSource.getMessage("viewMocks", null, locale));
         model.addAttribute("crearMock", messageSource.getMessage("crearMock", null, locale));
         model.addAttribute("welcome", messageSource.getMessage("welcome", null, locale));
+        model.addAttribute("gestionmocks", messageSource.getMessage("gestionmocks", null, locale));
+
         model.addAttribute("username", messageSource.getMessage("username", null, locale));
         model.addAttribute("password", messageSource.getMessage("password", null, locale));
         model.addAttribute("login", messageSource.getMessage("login", null, locale));
