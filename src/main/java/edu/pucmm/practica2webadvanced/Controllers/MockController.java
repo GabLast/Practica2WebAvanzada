@@ -51,6 +51,7 @@ public class MockController {
         model.addAttribute("login", messageSource.getMessage("login", null, locale));
         model.addAttribute("logout", messageSource.getMessage("logout", null, locale));
         model.addAttribute("listarusers", messageSource.getMessage("listarusers", null, locale));
+        model.addAttribute("admintools", messageSource.getMessage("admintools", null, locale));
 
         model.addAttribute("accessMethod", messageSource.getMessage("accessMethod", null, locale));
         model.addAttribute("charset", messageSource.getMessage("charset", null, locale));
@@ -196,6 +197,7 @@ public class MockController {
         model.addAttribute("login", messageSource.getMessage("login", null, locale));
         model.addAttribute("logout", messageSource.getMessage("logout", null, locale));
         model.addAttribute("listarusers", messageSource.getMessage("listarusers", null, locale));
+        model.addAttribute("admintools", messageSource.getMessage("admintools", null, locale));
 
         model.addAttribute("accessMethod", messageSource.getMessage("accessMethod", null, locale));
         model.addAttribute("charset", messageSource.getMessage("charset", null, locale));

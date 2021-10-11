@@ -1,10 +1,8 @@
 package edu.pucmm.practica2webadvanced.Controllers;
 
-import edu.pucmm.practica2webadvanced.Models.Rol;
 import edu.pucmm.practica2webadvanced.Models.User;
 import edu.pucmm.practica2webadvanced.Services.RolServices;
 import edu.pucmm.practica2webadvanced.Services.UserServices;
-import org.h2.command.ddl.CreateUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.core.Authentication;
@@ -49,6 +47,7 @@ public class UserController {
         model.addAttribute("login", messageSource.getMessage("login", null, locale));
         model.addAttribute("logout", messageSource.getMessage("logout", null, locale));
         model.addAttribute("listarusers", messageSource.getMessage("listarusers", null, locale));
+        model.addAttribute("admintools", messageSource.getMessage("admintools", null, locale));
 
         model.addAttribute("username", messageSource.getMessage("username", null, locale));
         model.addAttribute("password", messageSource.getMessage("password", null, locale));
@@ -83,6 +82,7 @@ public class UserController {
         model.addAttribute("createuser", messageSource.getMessage("createuser", null, locale));
         model.addAttribute("logout", messageSource.getMessage("logout", null, locale));
         model.addAttribute("listarusers", messageSource.getMessage("listarusers", null, locale));
+        model.addAttribute("admintools", messageSource.getMessage("admintools", null, locale));
 
         model.addAttribute("username", messageSource.getMessage("username", null, locale));
         model.addAttribute("password", messageSource.getMessage("password", null, locale));

@@ -40,8 +40,21 @@
                 </li>
                 <#if usuario??>
                     <#if admin == true>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/admin/users/list"><#if listarusers??>${listarusers}</#if></a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <#if admintools??>
+                                    ${admintools}
+                                </#if>
+                            </a>
+                            <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="/admin/users/list"><#if listarusers??>${listarusers}</#if></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="/admin/mocks/list"><#if viewMocks??>${viewMocks}</#if></a>
+                                </li>
+                            </ul>
                         </li>
                     </#if>
                     <li class="nav-item">
