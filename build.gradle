@@ -17,6 +17,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'com.h2database:h2:1.4.200'
+    //Libreria para JWT
+    implementation 'io.jsonwebtoken:jjwt-api:0.10.5'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.10.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.10.5'
+
+    //library to split ez
+    //https://stackoverflow.com/questions/31153753/split-string-into-key-value-pairs
+    implementation 'com.google.guava:guava:30.1.1-jre'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     implementation 'org.springframework.boot:spring-boot-starter-web'

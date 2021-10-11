@@ -11,4 +11,8 @@ public interface MockRepository extends JpaRepository<Mock, Long> {
     List<Mock> findAllByDeleted(boolean deleted);
 
     List<Mock> findAllByUserAndDeleted(User user, boolean deleted);
+
+    Mock findByRoute(String r);
+
+    Mock findByIdMock(long id);
 }

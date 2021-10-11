@@ -5,28 +5,25 @@ import edu.pucmm.practica2webadvanced.Services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.websocket.server.PathParam;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("/")
-public class HomeController {
-
+@RequestMapping("/admin")
+public class AdminController {
     @Autowired
     private MessageSource messageSource;
 
     @Autowired private UserServices userServices;
 
-    @GetMapping("/")
-    public String index() { return "redirect:/home"; }
-
-    @GetMapping("/home")
-    public String home(Authentication auth, Model model, Locale locale){
+    @GetMapping("/users/list")
+    public String listusers(Authentication auth, Model model, Locale locale){
 
         model.addAttribute("title", messageSource.getMessage("title", null, locale));
         model.addAttribute("inicio", messageSource.getMessage("inicio", null, locale));
@@ -40,18 +37,38 @@ public class HomeController {
         model.addAttribute("login", messageSource.getMessage("login", null, locale));
         model.addAttribute("logout", messageSource.getMessage("logout", null, locale));
         model.addAttribute("listarusers", messageSource.getMessage("listarusers", null, locale));
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        model.addAttribute("username", messageSource.getMessage("username", null, locale));
+        model.addAttribute("rol", messageSource.getMessage("rol", null, locale));
+        model.addAttribute("logout", messageSource.getMessage("logout", null, locale));
+
         try{
             User current = userServices.findByUsername(auth.getName());
             model.addAttribute("usuario", current);
             model.addAttribute("admin", current.getRoles().toString().contains("ADMIN"));
+            model.addAttribute("listUsers", userServices.findAllActive());
 
         }catch (NullPointerException e)
         {
             System.out.println("No user found");
+            return "redirect:/user/auth";
         }
 
 
-        return "/Home";
+        return "/admin/ManageUsers";
+    }
+
+    @PostMapping("/users/delete")
+    public String deleteUser(@PathParam("username") String username){
+
+        try {
+            User user = userServices.findByUsername(username);
+            user.setActive(false);
+            userServices.insert(user);
+        }catch (NullPointerException e){
+            System.out.println("User to be deleted was found to be NULL");
+        }
+
+        return "redirect:/admin/users/list";
     }
 }

@@ -9,7 +9,7 @@
     <body>
     <div class="row">
         <div class="col-md-6 offset-md-1">
-            <h2 class="text-light">Usted no tiene permisos para acceder a este recurso
+            <h2 class="text-light">:(
             </h2>
             <br>
             <a href="/">

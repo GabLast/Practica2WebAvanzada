@@ -9,5 +9,5 @@ public interface RolRepository extends JpaRepository<Rol, String> {
 
     List<Rol> findAll();
 
-    List<Rol> findByRole(String rol);
+    Rol findByRole(String rol);
 }

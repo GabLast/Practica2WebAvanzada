@@ -22,7 +22,7 @@ public class RolServices {
         return rolRepository.findAll();
     }
 
-    public  List<Rol> findByID(String a){
+    public Rol findByID(String a){
         return rolRepository.findByRole(a);
     }
 

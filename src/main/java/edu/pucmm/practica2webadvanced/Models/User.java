@@ -17,19 +17,13 @@ public class User implements Serializable {
     private String password;
     @Column(nullable = false)
     private boolean active = true;
+//    @Column(columnDefinition="tinyint(1) default 0")
+//    private boolean admin;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Column(nullable = false)
     private Set<Rol> roles;
 
-
-    public User(String username, String password, Set<Rol> roles) {
-        this.username = username;
-        this.password = password;
-        this.roles = roles;
-    }
-
     public User() {
-
     }
 
     public String getUsername() {
@@ -61,6 +55,10 @@ public class User implements Serializable {
     }
 
     public void setRoles(Set<Rol> roles) {
+
+//        if(roles.toString().contains("ADMIN")){
+//            this.admin = true;
+//        }
         this.roles = roles;
     }
 
