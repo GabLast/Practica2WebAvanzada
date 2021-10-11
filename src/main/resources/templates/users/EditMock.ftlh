@@ -7,6 +7,12 @@
                 let element = document.getElementById(id);
                 element.value = valueToSelect;
             }
+            <#if mock??>
+                window.onload=selectElement(httpcode, ${mock.getStatusCode().getCode()});
+                window.onload=selectElement(accessMethod, ${mock.getAccessMethod().getMethod()});
+                window.onload=selectElement(charset, ${mock.getCharset().getDescription()});
+                window.onload=selectElement(charset, ${mock.getContentType().getDescription()});
+            </#if>
         </script>
     </#if>
 </#macro>
@@ -29,7 +35,7 @@
                 <form method="post" action="/mock/edit" enctype="application/x-www-form-urlencoded">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title"><#if createMock??>${createMock}</#if></h5>
+                            <h5 class="modal-title"><#if edit??>${edit} Mock</#if></h5>
                         </div>
                         <div class="modal-body">
                             <#if mock??>
@@ -47,7 +53,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="httpcode" class="form-label"><#if statuscode??>${statuscode}</#if>:</label>
-                                <select onload="selectElement(httpcode, ${mock.getStatusCode().getCode()})" name="httpcode" id="httpcode" class="form-select" required>
+                                <select name="httpcode" id="httpcode" class="form-select" required>
                                     <#if listCodes??>
                                         <#list listCodes as code>
                                             <option value="${code.getCode()}">${code.getCode()} - ${code.getDescription()}</option>
@@ -57,7 +63,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="accessMethod" class="form-label"><#if accessMethod??>${accessMethod}</#if>:</label>
-                                <select onload="selectElement(accessMethod, ${mock.getAccessMethod().getMethod()})" name="accessMethod" id="accessMethod" class="form-select" required>
+                                <select  name="accessMethod" id="accessMethod" class="form-select" required>
                                     <#if listAccessMethod?has_content>
                                         <#list listAccessMethod as e>
 
@@ -68,7 +74,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="charset" class="form-label"><#if charset??>${charset}</#if>:</label>
-                                <select onload="selectElement(charset, ${mock.getCharset().getDescription()})" name="charset" id="charset" class="form-select" required>
+                                <select  name="charset" id="charset" class="form-select" required>
                                     <#if listCharset?has_content>
                                         <#list listCharset as e>
 
@@ -79,7 +85,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="contentType" class="form-label"><#if contentType??>${contentType}</#if>:</label>
-                                <select onload="selectElement(contentType, ${mock.getContentType().getDescription()})" name="contentType" id="contentType" class="form-select" required>
+                                <select name="contentType" id="contentType" class="form-select" required>
                                     <#if listContentType?has_content>
                                         <#list listContentType as e>
 
@@ -90,15 +96,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="header" class="form-label"><#if header??>${header}</#if>:</label>
-                                <textarea class="form-control" <#if header??>placeholder="${keyvalue}"</#if> id="header" name="header" style="height: 200px" maxlength="255" <#if jsonFormat??>placeholder="${jsonFormat}"</#if>>
-                                    ${mock.getHttpHeaders().toString()}
-                                </textarea>
+                                <textarea class="form-control" <#if header??>placeholder="${keyvalue}"</#if> id="header"
+                                          name="header" style="height: 200px" maxlength="255" <#if jsonFormat??>placeholder="${jsonFormat}"</#if>>${mock.getHttpHeaders()}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="body" class="form-label"><#if body??>${body}</#if>:</label>
-                                <textarea class="form-control" id="body" name="body" style="height: 200px" maxlength="255">
-                                    ${mock.getResponseBody().toString()}
-                                </textarea>
+                                <textarea class="form-control" id="body" name="body" style="height: 200px" maxlength="255">${mock.getResponseBody()}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="fechaexpire" class="form-label"><#if fechaexpire??>${fechaexpire}</#if>:</label>
@@ -115,7 +118,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary btn-dark">${create}</button>
+                            <button type="submit" class="btn btn-primary btn-dark"><#if edit??>${edit}</#if></button>
                         </div>
                                 <#else>
                                 <p>No data :(</p>
@@ -136,6 +139,7 @@
                 <br>
             </div>
             <div class="col-md-4">
+
             </div>
         </div>
     </div>
