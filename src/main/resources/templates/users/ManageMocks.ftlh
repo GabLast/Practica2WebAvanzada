@@ -21,6 +21,7 @@
                                     <tr>
                                         <th scope="col">ID</th>
                                         <th scope="col"><#if mockname??>${mockname}</#if></th>
+                                        <th scope="col"><#if ruta??>${ruta}</#if></th>
                                         <th scope="col"><#if statuscode??>${statuscode}</#if></th>
                                         <th scope="col"><#if charset??>${charset}</#if></th>
                                         <th scope="col"><#if contentType??>${contentType}</#if></th>

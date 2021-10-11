@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -41,7 +42,8 @@ public class Config extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutSuccessUrl("/user/auth")
-                .permitAll();
+                .permitAll()
+                .and().addFilterBefore(new JWTAuthorization(), BasicAuthenticationFilter.class);;
 
         //TODO: validar exclusivamente en ambiente de prueba.
         // deshabilitando las seguridad contra los frame internos.

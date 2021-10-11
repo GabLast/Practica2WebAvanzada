@@ -60,6 +60,7 @@ public class MockController {
         model.addAttribute("mockname", messageSource.getMessage("mockname", null, locale));
         model.addAttribute("statuscode", messageSource.getMessage("statuscode", null, locale));
         model.addAttribute("fechaexpire", messageSource.getMessage("fechaexpire", null, locale));
+        model.addAttribute("fechacreate", messageSource.getMessage("fechacreate", null, locale));
         model.addAttribute("createMock", messageSource.getMessage("createMock", null, locale));
         model.addAttribute("create", messageSource.getMessage("create", null, locale));
         model.addAttribute("name", messageSource.getMessage("name", null, locale));
@@ -178,9 +179,10 @@ public class MockController {
 
     @GetMapping("/edit")
     public String editGet(Model model, Locale locale,
-                          Authentication auth, @PathParam("idmock") long idMock){
+                          Authentication auth,
+                          @PathParam("idmock") Long idmock){
 
-        model.addAttribute("mock", mockServices.findByID(idMock));
+        model.addAttribute("mock", mockServices.findByID(idmock));
 
         model.addAttribute("title", messageSource.getMessage("title", null, locale));
         model.addAttribute("inicio", messageSource.getMessage("inicio", null, locale));
@@ -211,6 +213,7 @@ public class MockController {
         model.addAttribute("ruta", messageSource.getMessage("ruta", null, locale));
         model.addAttribute("jwt", messageSource.getMessage("jwt", null, locale));
         model.addAttribute("keyvalue", messageSource.getMessage("keyvalue", null, locale));
+        model.addAttribute("edit", messageSource.getMessage("edit", null, locale));
 
         model.addAttribute("hora", messageSource.getMessage("hora", null, locale));
         model.addAttribute("dia", messageSource.getMessage("dia", null, locale));
@@ -284,10 +287,14 @@ public class MockController {
     }
 
     @PostMapping("/delete")
-    public String deleteMock(@PathParam("idmock") long idmock){
-        Mock mock = mockServices.findByID(idmock);
-        if(mock != null){
+    public String deleteMock(@PathParam("idmock") Long idmock){
+
+        try{
+            Mock mock = mockServices.findByID(idmock);
             mock.setDeleted(true);
+            mockServices.insert(mock);
+        }catch (NullPointerException e){
+            System.out.println("ERROR = Mock is null");
         }
 
         return "redirect:/mock/list";
