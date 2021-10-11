@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -29,12 +28,20 @@ public class Config extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/**").permitAll()
+                .antMatchers("/*").permitAll()
+                .antMatchers("/user/**").permitAll()
+                .antMatchers("/mock/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/dbconsole", "/admin/**").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/user/auth") //indicando la ruta que estaremos utilizando.
-                .failureUrl("/user/auth?error"); //en caso de fallar puedo indicar otra pagina.;
+                .failureUrl("/user/auth?error")//en caso de fallar puedo indicar otra pagina.
+                .defaultSuccessUrl("/home", true)
+                .and()
+                .logout()
+                .logoutSuccessUrl("/user/auth")
+                .permitAll();
 
         //TODO: validar exclusivamente en ambiente de prueba.
         // deshabilitando las seguridad contra los frame internos.

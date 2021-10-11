@@ -20,15 +20,15 @@
                                     <thead class="table-dark text-center">
                                     <tr>
                                         <th scope="col">ID</th>
-                                        <th scope="col">${mockname}</th>
-                                        <th scope="col">${statuscode}</th>
-                                        <th scope="col">${charset}</th>
-                                        <th scope="col">${contentType}</th>
-                                        <th scope="col">${accessMethod}</th>
-                                        <th scope="col">${header}</th>
-                                        <th scope="col">${body}</th>
-                                        <th scope="col">${fechacreate}</th>
-                                        <th scope="col">${fechaexpire}</th>
+                                        <th scope="col"><#if mockname??>${mockname}</#if></th>
+                                        <th scope="col"><#if statuscode??>${statuscode}</#if></th>
+                                        <th scope="col"><#if charset??>${charset}</#if></th>
+                                        <th scope="col"><#if contentType??>${contentType}</#if></th>
+                                        <th scope="col"><#if accessMethod??>${accessMethod}</#if></th>
+                                        <th scope="col"><#if header??>${header}</#if></th>
+                                        <th scope="col"><#if body??>${body}</#if></th>
+                                        <th scope="col"><#if fechacreate??>${fechacreate}</#if></th>
+                                        <th scope="col"><#if fechaexpire??>${fechaexpire}</#if></th>
                                         <th scope="col"></th>
                                     </tr>
                                     </thead>
@@ -36,8 +36,9 @@
                                     <#if listmocks?has_content>
                                         <#list listmocks as es>
                                             <tr class="table-secondary">
-                                                <td>${es.getIdResponse()}</td>
+                                                <td>${es.getIdMock()}</td>
                                                 <td>${es.getName()}</td>
+                                                <td>${es.getRoute()}</td>
                                                 <td>${es.getStatusCode().getCode()}</td>
                                                 <td>${es.getCharset().getDescription()}</td>
                                                 <td>${es.getContentType().getDescription()}</td>
@@ -49,10 +50,10 @@
                                                 <td>
                                                     <div class="row">
                                                         <div class="col">
-                                                            <form method="get" action="/view"
+                                                            <form method="get" action="/mock/view"
                                                                   enctype="application/x-www-form-urlencoded">
-                                                                <input type="number" name="idResponse"
-                                                                       value="${es.getIdResponse()}" hidden required/>
+                                                                <input type="number" name="idmock"
+                                                                       value="${es.getIdMock()}" hidden required/>
                                                                 <button class="btn btn-sm btn-custom1"
                                                                         type="submit">
                                                                     <span class="material-icons">visibility</span>
@@ -60,10 +61,10 @@
                                                             </form>
                                                         </div>
                                                         <div class="col">
-                                                            <form method="get" action="/edit"
+                                                            <form method="get" action="/mock/edit"
                                                                   enctype="application/x-www-form-urlencoded">
-                                                                <input type="number" name="idResponse"
-                                                                       value="${es.getIdResponse()}" hidden required/>
+                                                                <input type="number" name="idmock"
+                                                                       value="${es.getIdMock()}" hidden required/>
                                                                 <button class="btn btn-sm btn-custom1"
                                                                         type="submit">
                                                                     <span class="material-icons">edit</span>
@@ -71,10 +72,10 @@
                                                             </form>
                                                         </div>
                                                         <div class="col">
-                                                            <form method="post" action="/delete"
+                                                            <form method="post" action="/mock/delete"
                                                                   enctype="application/x-www-form-urlencoded">
-                                                                <input type="number" name="idResponse"
-                                                                       value="${es.getIdResponse()}" hidden required/>
+                                                                <input type="number" name="idmock"
+                                                                       value="${es.getIdMock()}" hidden required/>
                                                                 <button class="btn btn-sm btn-eliminar"
                                                                         type="submit">
                                                                     <span class="material-icons">clear</span>

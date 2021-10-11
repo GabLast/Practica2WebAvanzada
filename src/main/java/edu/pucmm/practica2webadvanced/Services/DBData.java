@@ -36,7 +36,6 @@ public class DBData {
         Rol user = new Rol("ROLE_USER");
         rolServices.insert(admin);
         rolServices.insert(user);
-
         //users
         User user1 = new User();
         User user2 = new User();

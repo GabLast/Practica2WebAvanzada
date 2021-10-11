@@ -11,8 +11,10 @@
         </button>
         <div class="collapse navbar-collapse" style="margin-top: 5px;" id="navbarNav">
             <span class="navbar-text">
-                <#if welcome??>
-                    ${welcome}
+                <#if usuario??>
+                    <#if welcome??>
+                        ${welcome}, ${usuario.getUsername()}
+                    </#if>
                 </#if>
             </span>
             <ul class="navbar-nav ms-auto">
@@ -24,7 +26,7 @@
                         </#if>
                     </a>
                     <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="/mock/manage">
+                        <li><a class="dropdown-item" href="/mock/list">
                                 <#if viewMocks??>
                                     ${viewMocks}
                                 </#if>
@@ -36,6 +38,24 @@
                             </a></li>
                     </ul>
                 </li>
+                <#if usuario??>
+                    <#if admin == true>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/users/list"><#if listarusers??>${listarusers}</#if></a>
+                        </li>
+                    </#if>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout"><#if logout??>${logout}</#if></a>
+                    </li>
+                <#else>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/sign-up"><#if signup??>${signup}</#if></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/auth"><#if login??>${login}</#if></a>
+                    </li>
+                </#if>
+
             </ul>
         </div>
     </div>
