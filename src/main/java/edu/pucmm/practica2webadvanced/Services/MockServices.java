@@ -86,7 +86,7 @@ public class MockServices {
 
     public Map<String, String> formatHeaders(String headers) {
 
-        Map<String, String> map = Splitter.on(",").withKeyValueSeparator('=').split(headers);
+        Map<String, String> map = Splitter.on(",").trimResults().withKeyValueSeparator('=').split(headers);
 
 //        for(String s : map.keySet()){
 //            System.out.printf(s + map.get(s));

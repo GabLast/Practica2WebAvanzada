@@ -51,17 +51,6 @@
                                                 <td>
                                                     <div class="row">
                                                         <div class="col">
-                                                            <form method="get" action="/mock/view"
-                                                                  enctype="application/x-www-form-urlencoded">
-                                                                <input type="number" name="idmock"
-                                                                       value="${es.getIdMock()}" hidden required/>
-                                                                <button class="btn btn-sm btn-custom1"
-                                                                        type="submit">
-                                                                    <span class="material-icons">visibility</span>
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                        <div class="col">
                                                             <form method="get" action="/mock/edit"
                                                                   enctype="application/x-www-form-urlencoded">
                                                                 <input type="number" name="idmock"

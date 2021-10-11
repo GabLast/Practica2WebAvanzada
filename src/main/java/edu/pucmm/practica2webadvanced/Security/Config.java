@@ -30,6 +30,7 @@ public class Config extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/*").permitAll()
+                .antMatchers("/api/**").permitAll()
                 .antMatchers("/user/**").permitAll()
                 .antMatchers("/mock/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/dbconsole", "/admin/**").hasAnyRole("ADMIN")
@@ -42,8 +43,8 @@ public class Config extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutSuccessUrl("/user/auth")
-                .permitAll()
-                .and().addFilterBefore(new JWTAuthorization(), BasicAuthenticationFilter.class);;
+                .permitAll();
+//                .and().addFilterBefore(new JWTAuthorization(), BasicAuthenticationFilter.class);
 
         //TODO: validar exclusivamente en ambiente de prueba.
         // deshabilitando las seguridad contra los frame internos.
