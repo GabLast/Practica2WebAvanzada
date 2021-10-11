@@ -5,11 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Service
 public class DBData {
@@ -39,8 +36,8 @@ public class DBData {
         //users
         User user1 = new User();
         User user2 = new User();
-        user1.setUsername("admin");
-        user1.setPassword(bCryptPasswordEncoder.encode("admin"));
+        user1.setUsername("admintools");
+        user1.setPassword(bCryptPasswordEncoder.encode("admintools"));
         user1.setRoles(new HashSet<>(Arrays.asList(admin, user)));
         user2.setUsername("gab");
         user2.setPassword(bCryptPasswordEncoder.encode("123"));

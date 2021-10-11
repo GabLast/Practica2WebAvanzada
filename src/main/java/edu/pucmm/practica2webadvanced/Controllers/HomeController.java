@@ -5,7 +5,6 @@ import edu.pucmm.practica2webadvanced.Services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +39,7 @@ public class HomeController {
         model.addAttribute("login", messageSource.getMessage("login", null, locale));
         model.addAttribute("logout", messageSource.getMessage("logout", null, locale));
         model.addAttribute("listarusers", messageSource.getMessage("listarusers", null, locale));
+        model.addAttribute("admintools", messageSource.getMessage("admintools", null, locale));
 //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         try{
             User current = userServices.findByUsername(auth.getName());

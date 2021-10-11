@@ -30,6 +30,7 @@
                                         <th scope="col"><#if body??>${body}</#if></th>
                                         <th scope="col"><#if fechacreate??>${fechacreate}</#if></th>
                                         <th scope="col"><#if fechaexpire??>${fechaexpire}</#if></th>
+                                        <th scope="col"><#if owner??>${owner}</#if></th>
                                         <th scope="col"></th>
                                     </tr>
                                     </thead>
@@ -48,6 +49,7 @@
                                                 <td>${es.getResponseBody()}</td>
                                                 <td>${es.getDateCreate()?datetime}</td>
                                                 <td>${es.getExpirationDate()?datetime}</td>
+                                                <td>${es.getUser().getUsername()}</td>
                                                 <td>
                                                     <div class="row">
                                                         <div class="col">
@@ -62,18 +64,7 @@
                                                             </form>
                                                         </div>
                                                         <div class="col">
-                                                            <form method="get" action="/mock/edit"
-                                                                  enctype="application/x-www-form-urlencoded">
-                                                                <input type="number" name="idmock"
-                                                                       value="${es.getIdMock()}" hidden required/>
-                                                                <button class="btn btn-sm btn-custom1"
-                                                                        type="submit">
-                                                                    <span class="material-icons">edit</span>
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                        <div class="col">
-                                                            <form method="post" action="/mock/delete"
+                                                            <form method="post" action="/admin/mocks/delete"
                                                                   enctype="application/x-www-form-urlencoded">
                                                                 <input type="number" name="idmock"
                                                                        value="${es.getIdMock()}" hidden required/>
