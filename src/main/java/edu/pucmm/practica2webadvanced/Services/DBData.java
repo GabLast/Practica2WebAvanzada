@@ -36,8 +36,8 @@ public class DBData {
         //users
         User user1 = new User();
         User user2 = new User();
-        user1.setUsername("admintools");
-        user1.setPassword(bCryptPasswordEncoder.encode("admintools"));
+        user1.setUsername("admin");
+        user1.setPassword(bCryptPasswordEncoder.encode("admin"));
         user1.setRoles(new HashSet<>(Arrays.asList(admin, user)));
         user2.setUsername("gab");
         user2.setPassword(bCryptPasswordEncoder.encode("123"));
@@ -69,7 +69,6 @@ public class DBData {
         httpStatusCodeServices.insert(new HTTPStatusCode(303, "See Other"));
         httpStatusCodeServices.insert(new HTTPStatusCode(304, "Not Modified"));
         httpStatusCodeServices.insert(new HTTPStatusCode(305, "Use Proxy"));
-        httpStatusCodeServices.insert(new HTTPStatusCode(306, "Unused"));
         httpStatusCodeServices.insert(new HTTPStatusCode(307, "Temporary Redirect"));
         httpStatusCodeServices.insert(new HTTPStatusCode(400, "Bad Request"));
         httpStatusCodeServices.insert(new HTTPStatusCode(401, "Unauthorized"));
