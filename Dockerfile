@@ -4,12 +4,11 @@
 # Probando el concepto de Multi-stage.
 # Instalando Gradle para compilar al aplicación y luego lo necesario a una imagen completa.
 FROM gradle:7.2.0-jdk11 AS build
-COPY --chown=gradle:gradle src /home/gradle/src
+COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN gradle bootJar --no-daemon
 
-# El comando FROM indica la imagen base.
-# openjdk:8-jdk-alpine es una imagen de Java 8 muy ligera.
+# El comando FROM indica la imagen base. Usar imagenes ligeras
 FROM openjdk:11.0.12-jre-slim-buster
 
 # Quien mantiene la versión.
@@ -23,6 +22,8 @@ ENV spring.datasource.username='root'
 ENV spring.datasource.password='12345678'
 ENV DB_HOST=base-datos-app-web
 ENV DB_PORT=3306
+ENV DB_USER=root
+ENV DB_PASSWORD=12345678
 # ENV spring.datasource.url='jdbc:mysql://192.168.77.10:3306/dbname'
 
 
@@ -36,10 +37,10 @@ EXPOSE 8080
 
 # Copiando el archivo jar generado luego de la ejecución del comando
 # gradle task bootjar, se crean el jar y se copia a la imagen.
-COPY --from=build /home/gradle/src/build/libs/*.jar mi_app.jar
+COPY --from=build /home/gradle/src/build/libs/*.jar app.jar
 
 #Comando que se ejecuta una vez es iniciada la aplicación.
-ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "mi_app.jar"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "app.jar"]
 
 # Para subir al repositorio realizo el push
 # debo logearme primero
